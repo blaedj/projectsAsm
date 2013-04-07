@@ -46,7 +46,7 @@ looptop:
 
 	lw		$t2, 0($s0)
 
-	li			$v0, 1
+	li		$v0, 1
 	move		$a0, $t2	# print the value of the current element
 	syscall
 
