@@ -19,28 +19,32 @@
 # The address of the new Constant instance is returned in $v0.
 #
 Constant:
-        # FIXME - Implementation step 1.
-	mv	$t2, $a0	# store the parameter,
 
-	sub	$sp, $sp, 8	# save the return address
-	sw	$ra, 0($sp)
+	sub	$sp, $sp, 12
+	sw	$t0, 0($sp)
+	sw	$t1, 4($sp)
+	sw	$t2, 8($sp)
 
+	move	$t2, $a0	# store the parameter,
 
 	li	$v0, 9	# sbrk allocate space
 	li	$a0, 8 	# 2 words = 8 (bytes)
 	syscall
 
 	move	$t0, $v0	# save the address of the struct
+
 	la	$t1, value	# get the address for the value method
 
-	sw 	$t2, 4($t0)	# store the value
 	sw	$t1, 0($t0)	# make the value method accessible
+	sw 	$t2, 4($t0)	# store the value member
+
+	move	$v0, $t0 	# the return value goes here
 
 
-	mv	$v0, $t0 	#"the return value goes here"
-
-	lw	$ra, 0($sp)
-	add	$sp, $sp, 8	# restore the stack and return address
+	lw	$t0, 0($sp)
+	lw	$t1, 4($sp)
+	lw	$t2, 8($sp)
+	add	$sp, $sp, 12	# restore registers & deallocate stack
 
 	jr	$ra
 
@@ -60,12 +64,16 @@ Constant:
 #
 value:
 	# $t9 holds the address of the struct
-	sub	$sp, $sp, 8	# save the return address
+	sub	$sp, $sp, 8	# save the return address, + 1 reg
 	sw	$ra, 0($sp)
+	sw	$t0, 4($sp)
 
-	lw	$t0, 0($t9)	#
-	mv	$v0, $t0	# set the return value
+	move	$t0, $a0	 #save the base address of the struct
+
+	lw	$v0, 4($t0)	# set the return value
 
 	lw	$ra, 0($sp)
+	lw	$t0, 4($sp)
 	add	$sp, $sp, 8	# restore the stack and return address
-	jr		$ra
+
+	jr	$ra

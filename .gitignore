@@ -1,2 +1,18 @@
 *.zip
 
+/pa8/Constant.asm.bak
+/pa8/Difference.asm.bak
+/pa8/ParseNode.asm.bak
+/pa8/Product.asm.bak
+/pa8/Quotient.asm.bak
+/pa8/Sum.asm.bak
+/pa8/#ParseNode.asm#
+/pa7/.#mcreate.asm
+/pa7/#mcreate.asm#
+/pa8/java/Difference.java
+/pa8/java/ParseNode.java
+/pa8/java/Quotient.java
+/pa8/java/constant.java
+/pa8/java/product.java
+/pa8/java/sum.java
+/session record~

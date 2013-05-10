@@ -13,7 +13,7 @@
 	# .word	1	# number of rows
 	# .word	1	# number of columns
 	# .word	entries # the address of the entries array
-#
+	#
 
 	.text
 
