@@ -1,0 +1,40 @@
+Assemble: assembling /home/blaed/code/asm/programmingAssignments/pa7/mmult.asm, 
+/home/blaed/code/asm/programmingAssignments/pa7/main.asm, /home/blaed/code/asm/programmingAssignments/pa7/mwrite.asm, 
+/home/blaed/code/asm/programmingAssignments/pa7/mcreate.asm
+
+Assemble: operation completed successfully.
+
+
+This is the 6x1 matrix
+0 
+1 
+2 
+3 
+4 
+5 
+
+This is the 3x2 matrix
+0 1 
+2 3 
+4 5 
+
+This is the 2x3 matrix
+0 1 2 
+3 4 5 
+
+This is the 1x6 matrix
+0 1 2 3 4 5 
+
+This is the 6x6 matrix, created dynamically
+0 0 0 0 0 0 
+0 0 0 6 6 268697600 
+0 0 0 0 0 0 
+0 0 0 0 0 0 
+0 0 0 0 0 0 
+0 0 0 0 0 0 
+
+ This is the product of matrix2 and matrix3
+ 
+ 
+ /*** NOTE***/
+The program crashes here...

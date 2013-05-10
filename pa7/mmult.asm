@@ -54,7 +54,12 @@ mmult:
 	lw 	$t4, 0($s0) 		# $t4 is num of rows in M2
 
 	bne 	$t3, $t4, notCompatible # if not compatible, jump to 'return null'
-
+	b		continue
+notCompatible:
+	li	$v0, 0
+	b	end
+	
+continue:
 	# else the two are compatible, need to call mcreate to make the result matrix
 
 	lw	$t5, 0($s0)
@@ -62,7 +67,7 @@ mmult:
 
 	move	$a0, $t5		# rows in m1 = rows in r
 	move	$a1, $t6		# cols in m2 = cols in r
-	jal	mcreate
+	jal		mcreate
 	move	$s2, $v0		# move the address of the descriptor to a safe place
 
 
@@ -125,8 +130,9 @@ secondLoopTest:
 #-----------
 outsideLoopTest:
 	blt	$t0, $t5, outsideLoopTop # r < M1.rowcount
+		
 
-	move	$v0, $s2	# return the address of the result matrix descriptor
+	move	$v0, $s1	# return the address of the result matrix descriptor
 
 end:	# frame de-allocation
 
@@ -141,7 +147,3 @@ end:	# frame de-allocation
 	add	$sp, $sp, 32	# restore registers and de-allocate the stack
 
 	jr	$ra		# return to caller
-
-notCompatible:
-	li	$v0, 0		# return null
-	b	end

@@ -103,16 +103,18 @@ main:
 	jal	mwrite		# write out the dynamic array
 
 #--- the mmult test
+	li	$v0, 4
+	la	$a0, productMatrix
+	syscall			# print out the matrix name
+
 	la	$a0, matrix2x3
 	la	$a1, matrix3x2
 	jal	mmult
 
-	move	$a0, $v0	# move the address of the result array into $a0
-	jal	mwrite
+	move 	$a0, $v0
+	jal		mwrite
 
-	li	$v0, 4
-	la	$a0, productMatrix
-	syscall			# print out the matrix name
+
 
 #----- end of printing arrays----
 	li	$v0, 4
